@@ -1,15 +1,15 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { AuthActions, authTypes } from './types/auth';
+import { AuthActions, AuthTypes } from './auth.types';
 
-const logoutAction = (): AuthActions => {
+export const logoutAction = (): AuthActions => {
   return {
-    type: authTypes.logoutActionType,
+    type: AuthTypes.LOGOUT_USER,
   };
 };
 
-const loginAction = (): AuthActions => {
+export const loginAction = (): AuthActions => {
   return {
-    type: authTypes.loginActionType,
+    type: AuthTypes.LOGIN_USER,
   };
 };

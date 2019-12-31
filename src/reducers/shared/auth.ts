@@ -1,4 +1,4 @@
-import { AuthActions, authTypes } from '../../actions/shared/types/auth';
+import { AuthActions, AuthTypes } from '../../actions/shared/auth.types';
 import { AuthState } from './types/auth';
 
 const INITIAL_STATE: AuthState = {
@@ -9,7 +9,7 @@ const INITIAL_STATE: AuthState = {
 
 export default (state = INITIAL_STATE, action: AuthActions): AuthState => {
   switch (action.type) {
-    case authTypes.loginActionType:
+    case AuthTypes.LOGIN_USER:
       return {
         ...state,
         isPending: true,
