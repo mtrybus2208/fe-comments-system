@@ -1,16 +1,8 @@
 import React from 'react';
+import Main from './components/Main/Main';
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello</p>
-        <form>
-          <input type="text" />
-        </form>
-      </header>
-    </div>
-  );
+  return <Main />;
 };
 
 export default App;
