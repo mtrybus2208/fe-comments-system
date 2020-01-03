@@ -30,11 +30,11 @@ const LoginForm: React.SFC<LoginFormProps> = ({ onSubmit }) => {
       initialValues={{ email: '', password: '' }}
       onSubmit={handleSubmit}
       render={(props: FormikProps<LoginFormValues>) => (
-        <FormWrapper>
+        <FormWrapper name="Login">
           <Form>
             <FieldLabel htmlFor="email" name="Email Address" />
             <Field
-              type="email"
+              type="text"
               name="email"
               placeholder="Email"
               component={FieldInput}
