@@ -3,7 +3,6 @@ import { AuthState } from './auth.types';
 
 const INITIAL_STATE: AuthState = {
   user: null,
-  access: null,
   isPending: false,
 };
 
@@ -13,6 +12,18 @@ export default (state = INITIAL_STATE, action: AuthActions): AuthState => {
       return {
         ...state,
         isPending: true,
+      };
+    case AuthTypes.LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        isPending: false,
+        user: action.payload.user,
+      };
+    case AuthTypes.LOGIN_USER_FAILURE:
+      return {
+        ...state,
+        isPending: false,
+        user: null,
       };
     default:
       return state;

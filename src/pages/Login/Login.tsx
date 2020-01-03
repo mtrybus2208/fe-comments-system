@@ -16,7 +16,7 @@ const Login: React.SFC<LoginProps> = props => {
     values: LoginFormValues,
     formikActions: FormikHelpers<LoginFormValues>,
   ): void => {
-    dispatch(fromActions.loginAction());
+    dispatch(fromActions.login(values));
   };
 
   return <LoginForm {...props} onSubmit={handleSubmit} />;
