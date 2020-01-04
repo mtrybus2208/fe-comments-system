@@ -20,6 +20,7 @@ export default (state = INITIAL_STATE, action: AuthActions): AuthState => {
         user: action.payload.user,
       };
     case AuthTypes.LOGIN_USER_FAILURE:
+    case AuthTypes.LOGOUT_USER:
       return {
         ...state,
         isPending: false,
