@@ -2,16 +2,16 @@ import React from 'React';
 import { shallow } from 'enzyme';
 import Main from './Main';
 import { Route } from 'react-router';
-import Dashboard from '../../pages/Dashboard/Dashboard';
+import Authentication from '../../components/Authentication/Authentication';
 
 describe('Main', () => {
   it('should render layout', () => {
-    const wrapper = shallow(<Dashboard />);
+    const wrapper = shallow(<Main />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders correct dashboard route', () => {
+  it('renders correct Authenticated component on secured routes', () => {
     const wrapper = shallow(<Main />);
     const pathMap = wrapper.find(Route).reduce((pathMap, route) => {
       const routeProps = route.props();
@@ -19,6 +19,6 @@ describe('Main', () => {
       return pathMap;
     }, {});
 
-    expect(pathMap['/dashboard']).toBe(Dashboard);
+    expect(pathMap['*']).toBe(Authentication);
   });
 });

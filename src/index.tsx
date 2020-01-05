@@ -7,6 +7,7 @@ import theme from './theme/theme';
 import App from './App';
 import store from './store';
 import * as serviceWorker from './serviceWorker';
+import './utils/interceptors/request';
 
 ReactDOM.render(
   <Provider store={store}>

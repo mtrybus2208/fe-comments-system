@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldProps } from 'formik';
 import * as S from './FieldInput.styles';
-import { LoginFormValues } from '../../pages/Login/Login.types';
+import { LoginFormValues } from '../../../pages/Login/Login.types';
 
 export interface FieldInputProps {
   padding: 'string';
