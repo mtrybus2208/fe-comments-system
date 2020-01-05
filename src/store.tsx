@@ -5,7 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './reducers/index';
 
-const enhancers = composeWithDevTools(applyMiddleware(thunk));
+const enhancers = composeWithDevTools(
+  persistState('auth'),
+  applyMiddleware(thunk),
+);
 
 const defaultState = {};
 
