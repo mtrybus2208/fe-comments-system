@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import * as fromActions from '../../actions/shared/auth';
+
+import * as fromActions from 'actions/shared/auth';
 
 export interface DashboardProps {}
 
