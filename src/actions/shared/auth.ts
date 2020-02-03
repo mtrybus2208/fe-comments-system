@@ -1,11 +1,11 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { AuthActions, AuthTypes } from './auth.types';
 import { AnyAction } from 'redux';
-import Cookies from 'js-cookie';
-import { LoginFormValues } from '../../pages/Login/Login.types';
-import { User } from '../../reducers/shared/auth.types';
-import { ErrorDetails } from '../../types/shared/http.types';
+
+import { LoginFormValues } from 'pages/Login/Login.types';
+import { User } from 'reducers/shared/auth.types';
+import { ErrorDetails } from 'types/shared/http.types';
+import { AuthActions, AuthTypes } from './auth.types';
 
 const { REACT_APP_API: API, REACT_APP_HOST: HOST } = process.env;
 
@@ -44,13 +44,13 @@ export const login = (
 ): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     dispatch(loginAction());
+
     try {
       const res: AxiosResponse<User> = await axios({
         method: 'post',
         url: `${API}/login`,
         data: credentials,
       });
-      console.log({ res });
       dispatch(loginSuccessAction(res.data));
     } catch (err) {
       const { msg }: ErrorDetails = err.response.data;
