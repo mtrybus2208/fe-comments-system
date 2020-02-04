@@ -19,3 +19,10 @@ const PasswordReset: React.SFC<PasswordResetProps> = () => {
 };
 
 export default PasswordReset;
+
+// podepnij do reduxa
+/**
+ * zrob reducer narazie tylko
+ * pobierz stan w tym komponencie i w zaleznosci od stanu wyswietl preloader albo oks wartosc
+ *
+ */
