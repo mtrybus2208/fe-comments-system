@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormikHelpers } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 
 import PasswordResetForm from './components/PasswordResetForm/PasswordResetForm';
 import { PasswordResetFormValues } from './PasswordReset.types';
+import { validateResetToken } from 'actions/passwordResetToken/passwordResetToken';
+
+type Params = { token: string };
 
 export interface PasswordResetProps {}
 
-const PasswordReset: React.SFC<PasswordResetProps> = () => {
+const PasswordReset: React.SFC<PasswordResetProps> = ({
+  match,
+}: RouteComponentProps<Params>) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const { token }: { token: string } = match.params;
+    console.log({ token });
+  }, []);
+
   const handleSubmit = (
     values: PasswordResetFormValues,
     actions: FormikHelpers<PasswordResetFormValues>,
@@ -19,10 +33,3 @@ const PasswordReset: React.SFC<PasswordResetProps> = () => {
 };
 
 export default PasswordReset;
-
-// podepnij do reduxa
-/**
- * zrob reducer narazie tylko
- * pobierz stan w tym komponencie i w zaleznosci od stanu wyswietl preloader albo oks wartosc
- *
- */
