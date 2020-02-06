@@ -6,7 +6,10 @@ export interface FieldLabelProps {
   htmlFor: string;
 }
 
-const FieldLabel: React.SFC<FieldLabelProps> = ({ name, ...props }) => {
+const FieldLabel: React.FunctionComponent<FieldLabelProps> = ({
+  name,
+  ...props
+}) => {
   return <S.FieldLabel {...props}>{name}</S.FieldLabel>;
 };
 

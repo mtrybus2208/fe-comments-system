@@ -9,7 +9,7 @@ export interface FieldInputProps {
 
 export type FieldInputFormikProps = FieldProps<LoginFormValues> &
   FieldInputProps;
-const FieldInput: React.SFC<FieldInputFormikProps> = ({
+const FieldInput: React.FunctionComponent<FieldInputFormikProps> = ({
   field,
   form,
   ...props

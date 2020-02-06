@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-import * as fromActions from 'actions/shared/auth';
+import * as fromActions from '../../actions/shared/auth';
 
 export interface DashboardProps {}
 
-const Dashboard: React.SFC<DashboardProps> = () => {
+const Dashboard: React.FunctionComponent<DashboardProps> = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    // TODO: Create actions and reducers for that
     const fnn = async () => {
       try {
         const res: any = await axios({

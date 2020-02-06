@@ -6,7 +6,10 @@ export interface FormWrapperProps {
   children: JSX.Element[] | JSX.Element;
 }
 
-const FormWrapper: React.SFC<FormWrapperProps> = ({ name, children }) => {
+const FormWrapper: React.FunctionComponent<FormWrapperProps> = ({
+  name,
+  children,
+}) => {
   return (
     <S.FormWrapper>
       <S.Top>{name}</S.Top>

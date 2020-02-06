@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const FormWrapper: React.SFC = styled.div`
+export const FormWrapper: React.FunctionComponent = styled.div`
   background-color: #1b1e22;
   margin: 50px auto;
   max-width: 700px;
