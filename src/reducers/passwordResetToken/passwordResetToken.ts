@@ -5,7 +5,7 @@ import {
 import { PasswordResetTokenState } from './passwordResetToken.types';
 
 const INITIAL_STATE: PasswordResetTokenState = {
-  isValid: false,
+  isValid: true,
   isPending: false,
   errorMessage: null,
 };

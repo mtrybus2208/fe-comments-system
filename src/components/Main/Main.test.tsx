@@ -1,7 +1,8 @@
 import React from 'React';
 import { shallow } from 'enzyme';
+
 import Main from './Main';
-import { Route } from 'react-router';
+import { Route } from 'react-router-dom';
 import Authentication from '../../components/Authentication/Authentication';
 
 describe('Main', () => {
