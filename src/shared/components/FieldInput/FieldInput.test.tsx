@@ -1,5 +1,6 @@
 import React from 'React';
 import { shallow } from 'enzyme';
+
 import FieldInput from './FieldInput';
 
 describe('FieldInput', () => {

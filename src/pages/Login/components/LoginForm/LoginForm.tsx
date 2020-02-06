@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Field, Form, FormikHelpers, FormikProps } from 'formik';
 
-import FormWrapper from 'components/FormWrapper/FormWrapper';
-import FieldInput from 'shared/components/FieldInput/FieldInput';
-import FieldLabel from 'shared/components/FieldLabel/FieldLabel';
-import Button from 'shared/components/Buttons/Button/Button';
+import FormWrapper from '../../../../components/FormWrapper/FormWrapper';
+import FieldInput from '../../../../shared/components/FieldInput/FieldInput';
+import FieldLabel from '../../../../shared/components/FieldLabel/FieldLabel';
+import Button from '../../../../shared/components/Buttons/Button/Button';
 import { LoginFormValues } from '../../Login.types';
 
 export interface LoginFormProps {
@@ -14,7 +14,7 @@ export interface LoginFormProps {
   ) => void;
 }
 
-const LoginForm: React.SFC<LoginFormProps> = ({ onSubmit }) => {
+const LoginForm: React.FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
   const handleSubmit = (
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>,
