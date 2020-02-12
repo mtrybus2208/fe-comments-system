@@ -1,15 +1,17 @@
 import React from 'react';
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
+import { Formik, Field, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
 import FormWrapper from '../../../../components/FormWrapper/FormWrapper';
-import FieldInput from '../../../../shared/components/FieldInput/FieldInput';
-import FieldLabel from '../../../../shared/components/FieldLabel/FieldLabel';
+import FieldInput from '../../../../shared/components/Fields/FieldInput/FieldInput';
 import Button from '../../../../shared/components/Buttons/Button/Button';
 import { PasswordResetFormValues } from '../../PasswordReset.types';
 
 const Schema = Yup.object().shape({
-  newPassword: Yup.string().required('This field is required'),
+  newPassword: Yup.string()
+    .required('This field is required')
+    .min(5, 'Password should be longer than 5 chars')
+    .max(50, 'Password should be shorter than 50 chars'),
   newPasswordRepeat: Yup.string().when('newPassword', {
     is: val => (val && val.length > 0 ? true : false),
     then: Yup.string().oneOf(
@@ -19,7 +21,7 @@ const Schema = Yup.object().shape({
   }),
 });
 
-const Error = ({ children }) => <div style={{ color: 'red' }}>{children}</div>;
+const Error = ({ msg }) => <div style={{ color: 'red' }}>{msg}</div>;
 
 export interface PasswordResetFormProps {
   onSubmit: (
@@ -59,20 +61,25 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
       }) => (
         <FormWrapper name="Password reset">
           <Form>
-            <FieldLabel htmlFor="newPassword" name="new password" />
-            <Field type="text" name="newPassword" component={FieldInput} />
-            <ErrorMessage component={Error} name="newPassword" />
-
-            <FieldLabel
-              htmlFor="newPasswordRepeat"
-              name="repeat new password"
-            />
             <Field
-              name="newPasswordRepeat"
-              type="newPasswordRepeat"
+              type="text"
+              name="newPassword"
+              label="New password"
               component={FieldInput}
             />
-            <ErrorMessage component={Error} name="newPasswordRepeat" />
+            {errors.newPassword && touched.newPassword && (
+              <Error msg={errors?.newPassword} />
+            )}
+
+            <Field
+              name="newPasswordRepeat"
+              type="text"
+              label="Repeat new password"
+              component={FieldInput}
+            />
+            {errors.newPasswordRepeat && (
+              <Error msg={errors?.newPasswordRepeat} />
+            )}
 
             <Button type="submit">Submit</Button>
           </Form>
