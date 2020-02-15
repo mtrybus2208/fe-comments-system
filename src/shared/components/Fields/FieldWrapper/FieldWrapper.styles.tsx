@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const Container = styled.div`
     'label label'
     'input input'
     'error error';
-  grid-template-rows: 1fr;
+  grid-template-rows: 50px 60px 50px;
   grid-template-columns: 1fr;
 `;
 

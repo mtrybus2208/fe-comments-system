@@ -1,11 +1,19 @@
 import React from 'React';
 import { shallow } from 'enzyme';
 
-import FieldInput from './FieldInput';
+import FieldWrapper from './FieldWrapper';
 
-describe('FieldInput', () => {
+describe('FieldWrapper', () => {
   it('should render layout', () => {
-    const wrapper = shallow(<FieldInput />);
+    const props = {
+      label: 'foo',
+      name: 'bar',
+    };
+    const wrapper = shallow(
+      <FieldWrapper {...props}>
+        <span>42</span>
+      </FieldWrapper>,
+    );
 
     expect(wrapper).toMatchSnapshot();
   });

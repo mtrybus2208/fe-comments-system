@@ -1,30 +1,38 @@
 import React from 'react';
-import { FieldProps } from 'formik';
 
 import FieldLabel from '../FieldLabel/FieldLabel';
+import ErrorMsg from './components/ErrorMsg/ErrorMsg';
 import * as S from './FieldWrapper.styles';
+import { selectValidationType } from '../../../helpers/forms/selectValidationType';
+import { InputValidationTypes } from '../../../../types/shared/forms.types';
 
 export interface FieldWrapperProps {
-  field: any;
   children: JSX.Element[] | JSX.Element;
-  label?: string;
+  label: string;
+  name: string;
+  error?: string;
+  touched?: boolean;
+  validationType?: InputValidationTypes;
 }
 
 const FieldWrapper: React.FunctionComponent<FieldWrapperProps> = ({
-  field,
   children,
+  name,
   label,
+  error,
+  touched,
+  validationType,
 }) => {
   return (
     <S.Container>
-      <FieldLabel htmlFor={field.name} name={label}></FieldLabel>
+      <FieldLabel htmlFor={name} name={label} />
       <S.Content>{children}</S.Content>
+      <ErrorMsg
+        msg={error}
+        show={selectValidationType({ validationType, touched, error })}
+      />
     </S.Container>
   );
 };
 
 export default FieldWrapper;
-// https://scottdj92.ghost.io/building-dynamic-forms-with-formik-with-react-and-typescript/
-
-// 1. zrob dobre propsy dla fieldINputa
-// 2. zrob errora

@@ -1,28 +1,37 @@
-import React from 'react';
-import { FieldProps } from 'formik';
-import * as S from './FieldInput.styles';
-import LoginFormValues from '../../../../pages/Login/Login.types';
-import FieldWrapper from '../FieldWrapper/FieldWrapper';
+import React, { useEffect } from 'react';
+import { useField } from 'formik';
 
-/**
- * TODO: FIX TYPES!
- */
+import FieldWrapper from '../FieldWrapper/FieldWrapper';
+import * as S from './FieldInput.styles';
+import { InputValidationTypes } from '../../../../types/shared/forms.types';
 export interface FieldInputProps {
-  padding: 'string';
+  type: string;
+  name: string;
+  label: string;
+  padding?: number | string;
+  error?: string;
+  touched?: boolean;
+  validationType?: InputValidationTypes;
 }
 
-export type FieldInputFormikProps = FieldProps<LoginFormValues> &
-  FieldInputProps;
-
-const FieldInput: React.FunctionComponent<FieldInputFormikProps> = ({
-  field,
-  form,
+const FieldInput: React.FunctionComponent<FieldInputProps> = ({
+  label,
+  padding,
+  touched,
+  error,
+  validationType,
   ...props
 }) => {
-  console.log(field);
+  const [field] = useField(props);
   return (
-    <FieldWrapper field={field} {...props}>
-      <S.FieldInput {...field} {...props} />
+    <FieldWrapper
+      label={label}
+      name={field.name}
+      error={error}
+      touched={touched}
+      validationType={validationType}
+    >
+      <S.FieldInput {...field} padding={padding} />
     </FieldWrapper>
   );
 };
