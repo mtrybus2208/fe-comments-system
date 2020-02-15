@@ -1,26 +1,12 @@
 import React from 'react';
 import { Formik, Form, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
 
 import FormWrapper from '../../../../components/FormWrapper/FormWrapper';
 import FieldInput from '../../../../shared/components/Fields/FieldInput/FieldInput';
 import FieldSubmit from '../../../../shared/components/Fields/FieldSubmit/FieldSubmit';
 import { PasswordResetFormValues } from '../../PasswordReset.types';
 import { InputValidationTypes } from '../../../../types/shared/forms.types';
-
-const Schema = Yup.object().shape({
-  newPassword: Yup.string()
-    .required('This field is required')
-    .min(5, 'Password should be longer than 5 chars')
-    .max(50, 'Password should be shorter than 50 chars'),
-  newPasswordRepeat: Yup.string().when('newPassword', {
-    is: val => (val && val.length > 0 ? true : false),
-    then: Yup.string().oneOf(
-      [Yup.ref('newPassword')],
-      'Both password need to be the same',
-    ),
-  }),
-});
+import { passwordResetValidationSchema } from '../../../../shared/helpers/validations/passwordReset/passwordResetValidation';
 
 export interface PasswordResetFormProps {
   onSubmit: (
@@ -48,7 +34,7 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={Schema}
+      validationSchema={passwordResetValidationSchema}
     >
       {({
         values,
@@ -74,6 +60,8 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
                 name="newPasswordRepeat"
                 label="Repeat new password"
                 error={errors.newPasswordRepeat}
+                touched={touched.newPassword}
+                validationType={InputValidationTypes.ON_TOUCH}
               />
 
               <FieldSubmit />
