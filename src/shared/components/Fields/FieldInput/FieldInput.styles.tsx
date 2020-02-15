@@ -1,6 +1,16 @@
+import React from 'react';
 import styled from 'styled-components';
 
-export const FieldInput = styled.input`
+import { pixelify } from '../../../../shared/helpers/styling/styling';
+
+interface StyledFieldInputProps {
+  padding?: number | string;
+}
+
+type FieldInputElementProps = StyledFieldInputProps &
+  React.HTMLProps<HTMLInputElement>;
+
+export const FieldInput = styled.input<FieldInputElementProps>`
   display: block;
   flex: 1;
   height: 60px;
@@ -17,9 +27,9 @@ export const FieldInput = styled.input`
   letter-spacing: 0.1px;
   text-align: left;
   color: #5a5f6b;
+  padding: ${({ padding }) => pixelify(padding) || '15px'};
   padding-left: 15px;
   width: 100%;
-  margin-bottom: 50px;
   -webkit-box-shadow: 0 0 0px 1000px #15181b inset;
 
   &::placeholder {
