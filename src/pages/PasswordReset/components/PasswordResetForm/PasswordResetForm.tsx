@@ -1,25 +1,12 @@
 import React from 'react';
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, FormikHelpers } from 'formik';
 
 import FormWrapper from '../../../../components/FormWrapper/FormWrapper';
-import FieldInput from '../../../../shared/components/FieldInput/FieldInput';
-import FieldLabel from '../../../../shared/components/FieldLabel/FieldLabel';
-import Button from '../../../../shared/components/Buttons/Button/Button';
+import FieldInput from '../../../../shared/components/Fields/FieldInput/FieldInput';
+import FieldSubmit from '../../../../shared/components/Fields/FieldSubmit/FieldSubmit';
 import { PasswordResetFormValues } from '../../PasswordReset.types';
-
-const Schema = Yup.object().shape({
-  newPassword: Yup.string().required('This field is required'),
-  newPasswordRepeat: Yup.string().when('newPassword', {
-    is: val => (val && val.length > 0 ? true : false),
-    then: Yup.string().oneOf(
-      [Yup.ref('newPassword')],
-      'Both password need to be the same',
-    ),
-  }),
-});
-
-const Error = ({ children }) => <div style={{ color: 'red' }}>{children}</div>;
+import { InputValidationTypes } from '../../../../types/shared/forms.types';
+import { passwordResetValidationSchema } from '../../../../shared/helpers/validations/passwordReset/passwordResetValidation';
 
 export interface PasswordResetFormProps {
   onSubmit: (
@@ -47,7 +34,7 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={Schema}
+      validationSchema={passwordResetValidationSchema}
     >
       {({
         values,
@@ -56,28 +43,32 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
         handleChange,
         handleBlur,
         touched,
-      }) => (
-        <FormWrapper name="Password reset">
-          <Form>
-            <FieldLabel htmlFor="newPassword" name="new password" />
-            <Field type="text" name="newPassword" component={FieldInput} />
-            <ErrorMessage component={Error} name="newPassword" />
+      }) => {
+        return (
+          <FormWrapper name="Password reset">
+            <Form>
+              <FieldInput
+                type="text"
+                name="newPassword"
+                label="New password"
+                error={errors.newPassword}
+                touched={touched.newPassword}
+                validationType={InputValidationTypes.ON_TOUCH}
+              />
+              <FieldInput
+                type="text"
+                name="newPasswordRepeat"
+                label="Repeat new password"
+                error={errors.newPasswordRepeat}
+                touched={touched.newPassword}
+                validationType={InputValidationTypes.ON_TOUCH}
+              />
 
-            <FieldLabel
-              htmlFor="newPasswordRepeat"
-              name="repeat new password"
-            />
-            <Field
-              name="newPasswordRepeat"
-              type="newPasswordRepeat"
-              component={FieldInput}
-            />
-            <ErrorMessage component={Error} name="newPasswordRepeat" />
-
-            <Button type="submit">Submit</Button>
-          </Form>
-        </FormWrapper>
-      )}
+              <FieldSubmit />
+            </Form>
+          </FormWrapper>
+        );
+      }}
     </Formik>
   );
 };
