@@ -35,6 +35,15 @@ const Button = styled.button<ButtonProps>`
     css`
       height: ${pixelify(height)};
     `};
+
+  :disabled {
+    cursor: not-allowed;
+    filter: saturate(0.4);
+
+    :hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 export default Button;

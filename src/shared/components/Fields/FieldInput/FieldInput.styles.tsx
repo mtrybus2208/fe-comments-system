@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { rgba } from 'polished';
 
 import { pixelify } from '../../../../shared/helpers/styling/styling';
 
 interface StyledFieldInputProps {
   padding?: number | string;
+  error?: boolean;
 }
 
 type FieldInputElementProps = StyledFieldInputProps &
@@ -17,7 +19,10 @@ export const FieldInput = styled.input<FieldInputElementProps>`
   box-shadow: 0px 1px 1px 0 rgba(255, 255, 255, 0.07),
     inset 0px 3px 8px 0 rgba(0, 0, 0, 0.25);
   background-color: #15181b !important;
-  border: none;
+  border: 1px solid
+    ${({ error }) => {
+      return error ? rgba('#7f1515', 0.5) : 'transparent';
+    }};
   outline: none;
   font-size: 14px;
   font-weight: normal;
@@ -30,6 +35,7 @@ export const FieldInput = styled.input<FieldInputElementProps>`
   padding: ${({ padding }) => pixelify(padding) || '15px'};
   padding-left: 15px;
   width: 100%;
+
   -webkit-box-shadow: 0 0 0px 1000px #15181b inset;
 
   &::placeholder {

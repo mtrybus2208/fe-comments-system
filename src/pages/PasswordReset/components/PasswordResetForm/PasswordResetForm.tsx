@@ -27,8 +27,8 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
     values: PasswordResetFormValues,
     actions: FormikHelpers<PasswordResetFormValues>,
   ): void => {
-    actions.setSubmitting(false);
     onSubmit(values, actions);
+    actions.setSubmitting(false);
   };
   return (
     <Formik
@@ -36,14 +36,7 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
       onSubmit={handleSubmit}
       validationSchema={passwordResetValidationSchema}
     >
-      {({
-        values,
-        errors,
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        touched,
-      }) => {
+      {({ errors, touched, dirty, isValid, isSubmitting }) => {
         return (
           <FormWrapper name="Password reset">
             <Form>
@@ -64,7 +57,7 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
                 validationType={InputValidationTypes.ON_TOUCH}
               />
 
-              <FieldSubmit />
+              <FieldSubmit disabled={isSubmitting || !dirty || !isValid} />
             </Form>
           </FormWrapper>
         );

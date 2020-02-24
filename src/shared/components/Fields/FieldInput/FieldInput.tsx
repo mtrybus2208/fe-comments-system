@@ -31,7 +31,7 @@ const FieldInput: React.FunctionComponent<FieldInputProps> = ({
       touched={touched}
       validationType={validationType}
     >
-      <S.FieldInput {...field} padding={padding} />
+      <S.FieldInput {...field} padding={padding} error={error && touched} />
     </FieldWrapper>
   );
 };
