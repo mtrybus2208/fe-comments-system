@@ -1,7 +1,7 @@
 import {
   PasswordResetTokenActions,
   PasswordResetTokenTypes,
-} from '../../actions/passwordResetToken/passwordResetToken.types';
+} from '../../actions/passwordReset/passwordResetToken/passwordResetToken.types';
 import { PasswordResetTokenState } from './passwordResetToken.types';
 
 const INITIAL_STATE: PasswordResetTokenState = {

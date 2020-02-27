@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const proxy = require('http-proxy-middleware');
-console.log('asd');
 module.exports = function setupProxy(app) {
   app.use(proxy('/api/v1', { target: 'http://localhost:5000/', xfwd: true }));
 };

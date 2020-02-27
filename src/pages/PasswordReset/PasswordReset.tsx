@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { FormikHelpers } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 
 import PasswordResetForm from './components/PasswordResetForm/PasswordResetForm';
 import { PasswordResetFormValues } from './PasswordReset.types';
-import { validateResetToken } from '../../actions/passwordResetToken/passwordResetToken';
+import { validateResetToken } from '../../actions/passwordReset/passwordResetToken/passwordResetToken';
+import { changePasswordUsingToken } from '../../actions/passwordReset/changePasswordUsingToken/changePasswordUsingToken';
 import { PasswordResetTokenState } from '../../reducers/passwordResetToken/passwordResetToken.types';
 
 type Params = { token: string };
@@ -16,6 +17,7 @@ const PasswordReset: React.FunctionComponent<PasswordResetProps> = ({
   match,
 }: RouteComponentProps<Params>) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const passwordResetToken: PasswordResetTokenState = useSelector(
     ({ passwordResetToken }: { passwordResetToken: PasswordResetTokenState }) =>
@@ -28,12 +30,17 @@ const PasswordReset: React.FunctionComponent<PasswordResetProps> = ({
     dispatch(validateResetToken(token));
   }, []);
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: PasswordResetFormValues,
     actions: FormikHelpers<PasswordResetFormValues>,
   ) => {
-    console.log('Password changed');
-    console.log({ values });
+    try {
+      const { token }: { token: string } = match.params;
+      await dispatch(changePasswordUsingToken(token, values.newPassword));
+      history.push('/');
+    } catch (e) {
+      console.log('show error snackbar');
+    }
   };
 
   if (isPending) {
