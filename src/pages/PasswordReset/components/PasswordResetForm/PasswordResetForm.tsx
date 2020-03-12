@@ -27,6 +27,7 @@ const PasswordResetForm: React.FunctionComponent<PasswordResetFormProps> = ({
     values: PasswordResetFormValues,
     actions: FormikHelpers<PasswordResetFormValues>,
   ): void => {
+    console.log('test');
     onSubmit(values, actions);
     actions.setSubmitting(false);
   };
