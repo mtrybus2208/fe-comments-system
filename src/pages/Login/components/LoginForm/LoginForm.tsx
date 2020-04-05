@@ -1,11 +1,12 @@
 import React from 'react';
-import { Formik, Field, Form, FormikHelpers, FormikProps } from 'formik';
+import { Formik, Form, FormikHelpers, FormikProps } from 'formik';
 
+import { InputValidationTypes } from '../../../../types/shared/forms.types';
 import FormWrapper from '../../../../components/FormWrapper/FormWrapper';
 import FieldInput from '../../../../shared/components/Fields/FieldInput/FieldInput';
-import FieldLabel from '../../../../shared/components/Fields/FieldLabel/FieldLabel';
-import Button from '../../../../shared/components/Buttons/Button/Button';
 import { LoginFormValues } from '../../Login.types';
+import FieldSubmit from '../../../../shared/components/Fields/FieldSubmit/FieldSubmit';
+import { loginValidationSchema } from '../../../../shared/helpers/validations/login/loginValidation';
 
 export interface LoginFormProps {
   onSubmit: (
@@ -23,32 +24,44 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
     onSubmit(values, actions);
   };
 
+  const initialValues: LoginFormValues = {
+    email: '',
+    password: '',
+  };
+
   return (
     <Formik
-      initialValues={{ email: '', password: '' }}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
-      render={(props: FormikProps<LoginFormValues>) => (
+      validationSchema={loginValidationSchema}
+    >
+      {(props: FormikProps<LoginFormValues>) => (
         <FormWrapper name="Login">
           <Form>
-            <FieldLabel htmlFor="email" name="Email Address" />
-            <Field
+            <FieldInput
               type="text"
               name="email"
-              placeholder="Email"
-              component={FieldInput}
+              label="Email Address"
+              error={props.errors.email}
+              touched={props.touched.email}
+              validationType={InputValidationTypes.ON_TOUCH}
             />
-            <FieldLabel htmlFor="password" name="Password" />
-            <Field
+
+            <FieldInput
               name="password"
               type="password"
-              placeholder="Your password"
-              component={FieldInput}
+              label="Your password"
+              error={props.errors.password}
+              touched={props.touched.password}
+              validationType={InputValidationTypes.ON_TOUCH}
             />
-            <Button type="submit">Submit</Button>
+            <FieldSubmit
+              disabled={props.isSubmitting || !props.dirty || !props.isValid}
+            />
           </Form>
         </FormWrapper>
       )}
-    />
+    </Formik>
   );
 };
 

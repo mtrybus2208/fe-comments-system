@@ -10,7 +10,7 @@ import * as fromActions from '../../actions/shared/auth';
 
 export interface LoginProps {}
 
-const Login: React.FunctionComponent<LoginProps> = props => {
+const Login: React.FunctionComponent<LoginProps> = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const auth: AuthState = useSelector(({ auth }: { auth: AuthState }) => auth);
