@@ -1,4 +1,4 @@
-# UI for Comment system with role based authentication [react/redux/typescript]
+# UI for comment system with role based authentication [react/redux/typescript]![CircleCI](https://circleci.com/gh/mtrybus2208/fe-comments-system.svg?style=svg)](https://circleci.com/gh/mtrybus2208/fe-comments-system)
 
 ## Table of contents
 
