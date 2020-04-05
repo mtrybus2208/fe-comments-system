@@ -1,4 +1,4 @@
-![CircleCI](https://circleci.com/gh/mtrybus2208/fe-comments-system.svg?style=svg)](https://circleci.com/gh/mtrybus2208/fe-comments-system)
+[![CircleCI](https://circleci.com/gh/mtrybus2208/fe-comments-system.svg?style=svg)](https://circleci.com/gh/mtrybus2208/fe-comments-system)
 
 # UI for comment system with role based authentication [react/redux/typescript]
 
