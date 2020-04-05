@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import FieldLabel from '../FieldLabel/FieldLabel';
-import ErrorMsg from './components/ErrorMsg/ErrorMsg';
-import * as S from './FieldWrapper.styles';
-import { selectValidationType } from '../../../helpers/forms/selectValidationType';
-import { InputValidationTypes } from '../../../../types/shared/forms.types';
+import FieldLabel from "../FieldLabel/FieldLabel";
+import ErrorMsg from "./components/ErrorMsg/ErrorMsg";
+import * as S from "./FieldWrapper.styles";
+import { selectValidationType } from "../../../helpers/forms/selectValidationType";
+import { InputValidationTypes } from "../../../../types/shared/forms.types";
 
 export interface FieldWrapperProps {
   children: JSX.Element[] | JSX.Element;
@@ -29,7 +29,7 @@ const FieldWrapper: React.FunctionComponent<FieldWrapperProps> = ({
       <S.Content>{children}</S.Content>
       <ErrorMsg
         msg={error}
-        show={selectValidationType({ validationType, touched, error })}
+        show={!!selectValidationType({ validationType, touched, error })}
       />
     </S.Container>
   );

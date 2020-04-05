@@ -1,4 +1,4 @@
-export type UserTypes = 'admin' | 'base';
+export type UserTypes = "admin" | "base";
 
 export interface User {
   id: string;
@@ -9,6 +9,6 @@ export interface User {
 }
 
 export interface AuthState {
-  user: User;
+  user: User | null;
   isPending: boolean;
 }

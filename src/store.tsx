@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
 
 const enhancers = composeWithDevTools(
-  persistState('auth'),
+  // persistState("auth"),
   applyMiddleware(thunk),
 );
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import axios, { AxiosResponse, AxiosError } from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 import * as fromActions from '../../actions/shared/auth';
 

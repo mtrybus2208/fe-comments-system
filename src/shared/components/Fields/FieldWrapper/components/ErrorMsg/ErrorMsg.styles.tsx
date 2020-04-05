@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface ErrorMsg {
-  show: boolean;
+  show?: boolean;
 }
 
 export const ErrorMsg = styled.div<ErrorMsg>`

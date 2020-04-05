@@ -1,12 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
+import axios, { AxiosResponse } from "axios";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
 
-import { ErrorDetails } from 'types/shared/http.types';
+import ErrorDetails from "../../../types/shared/http.types";
 import {
   PasswordResetTokenActions,
   PasswordResetTokenTypes,
-} from './passwordResetToken.types';
+} from "./passwordResetToken.types";
 
 const { REACT_APP_API: API } = process.env;
 
@@ -17,7 +17,7 @@ export const resetTokenAction = (): PasswordResetTokenActions => {
 };
 
 export const resetTokenSuccessAction = (
-  payload: any,
+  payload: any
 ): PasswordResetTokenActions => {
   return {
     type: PasswordResetTokenTypes.VALIDATE_PASSWORD_RESET_TOKEN_SUCCESS,
@@ -26,7 +26,7 @@ export const resetTokenSuccessAction = (
 };
 
 export const resetTokenFailureAction = (
-  msg: string,
+  msg: string
 ): PasswordResetTokenActions => {
   return {
     type: PasswordResetTokenTypes.VALIDATE_PASSWORD_RESET_TOKEN_FAILURE,
@@ -35,14 +35,14 @@ export const resetTokenFailureAction = (
 };
 
 export const validateResetToken = (
-  token: string,
+  token: string
 ): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     dispatch(resetTokenAction());
 
     try {
       const res: AxiosResponse<any> = await axios({
-        method: 'get',
+        method: "get",
         url: `${API}/users/validate-password-reset-token/${token}`,
       });
       dispatch(resetTokenSuccessAction(res.data));

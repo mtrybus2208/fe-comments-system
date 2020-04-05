@@ -1,2 +1,4 @@
-export const pixelify = (value: number | string): number | string =>
-  typeof value === 'number' ? `${value}px` : value;
+export const pixelify = (
+  value?: number | string
+): number | string | undefined =>
+  typeof value === "number" ? `${value}px` : value;

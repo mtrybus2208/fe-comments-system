@@ -1,18 +1,18 @@
 import {
   PasswordResetTokenActions,
   PasswordResetTokenTypes,
-} from '../../actions/passwordReset/passwordResetToken/passwordResetToken.types';
-import { PasswordResetTokenState } from './passwordResetToken.types';
+} from "../../actions/passwordReset/passwordResetToken/passwordResetToken.types";
+import { PasswordResetTokenState } from "./passwordResetToken.types";
 
 const INITIAL_STATE: PasswordResetTokenState = {
   isValid: true,
   isPending: false,
-  errorMessage: null,
+  errorMessage: "",
 };
 
 export default (
   state = INITIAL_STATE,
-  action: PasswordResetTokenActions,
+  action: PasswordResetTokenActions
 ): PasswordResetTokenState => {
   switch (action.type) {
     case PasswordResetTokenTypes.VALIDATE_PASSWORD_RESET_TOKEN:

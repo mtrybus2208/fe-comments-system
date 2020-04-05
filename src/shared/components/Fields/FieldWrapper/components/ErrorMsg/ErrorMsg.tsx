@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import * as S from './ErrorMsg.styles';
+import * as S from "./ErrorMsg.styles";
 
 export interface ErrorMsgProps {
-  show: boolean;
+  show?: boolean;
   msg?: string;
 }
 
