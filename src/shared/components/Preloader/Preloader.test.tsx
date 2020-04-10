@@ -1,18 +1,13 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import LoginForm from './LoginForm';
+import Preloader from './Preloader';
 
 const renderer = new ShallowRenderer();
 
-describe('LoginForm', () => {
+describe('Preloader', () => {
   it('should render layout', () => {
-    const props = {
-      onSubmit: jest.fn(),
-      isPending: false,
-    };
-
-    const wrapper = renderer.render(<LoginForm {...props} />);
+    const wrapper = renderer.render(<Preloader />);
 
     expect(wrapper).toMatchSnapshot();
   });
