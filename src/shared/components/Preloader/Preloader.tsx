@@ -5,7 +5,7 @@ import animationData from './spinner.json';
 
 export interface PreloaderProps {}
 
-const Preloader: React.FunctionComponent<PreloaderProps> = (props) => {
+const Preloader: React.FunctionComponent<PreloaderProps> = () => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -17,7 +17,10 @@ const Preloader: React.FunctionComponent<PreloaderProps> = (props) => {
   return (
     <S.Wrapper>
       <S.Preloader>
-        <Lottie options={defaultOptions} height={250} width={250} />
+        <S.Content>
+          <Lottie options={defaultOptions} height={170} width={170} />
+          <S.Title>Loading</S.Title>
+        </S.Content>
       </S.Preloader>
     </S.Wrapper>
   );

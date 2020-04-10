@@ -26,3 +26,16 @@ export const Preloader = styled.div`
   right: 0;
   bottom: 0;
 `;
+
+export const Title = styled.h2`
+  margin-top: 30px;
+  font-weight: 300;
+  text-transform: uppercase;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

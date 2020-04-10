@@ -14,9 +14,13 @@ export interface LoginFormProps {
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>,
   ) => void;
+  isPending: boolean;
 }
 
-const LoginForm: React.FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
+const LoginForm: React.FunctionComponent<LoginFormProps> = ({
+  onSubmit,
+  isPending,
+}) => {
   const handleSubmit = (
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>,
@@ -29,8 +33,6 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = ({ onSubmit }) => {
     email: '',
     password: '',
   };
-
-  const isPending = true;
 
   return (
     <>
