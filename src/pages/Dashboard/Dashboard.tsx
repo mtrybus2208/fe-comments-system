@@ -25,7 +25,6 @@ const Dashboard: React.FunctionComponent<DashboardProps> = () => {
         console.log(res);
       } catch (err) {
         const { msg }: any = err.response.data;
-        console.log(msg);
       }
     };
     fnn();
