@@ -68,7 +68,7 @@ export const login = (
       dispatch(
         showSnackbar({
           options: {
-            type: SnackbarTypesEnum.SUCCESS,
+            type: SnackbarTypesEnum.ERROR,
           },
           msg,
         }),
