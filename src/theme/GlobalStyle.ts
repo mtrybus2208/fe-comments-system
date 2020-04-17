@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     background: #141619; 
     box-sizing: border-box;
     -webkit-tap-highlight-color: ${theme.accent};
+    background-image: url('https://res.cloudinary.com/dfmqgkkbx/image/upload/v1586548141/galaxy_flat_design_bg2.png');
   }
 `;
 

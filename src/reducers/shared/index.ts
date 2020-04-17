@@ -1,7 +1,9 @@
-import AuthReducer from './auth';
+import authReducer from './auth';
+import snackbarReducer from './snackbar/snackbar';
 
 const sharedRootReducer = {
-  auth: AuthReducer,
+  auth: authReducer,
+  snackbar: snackbarReducer,
 };
 
 export { sharedRootReducer };

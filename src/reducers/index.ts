@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import { sharedRootReducer } from './shared/index';
 import passwordResetTokenReducer from './passwordResetToken/passwordResetToken';
 

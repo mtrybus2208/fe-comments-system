@@ -1,14 +1,13 @@
-import axios, { AxiosResponse } from "axios";
-import { ThunkAction, ThunkDispatch } from "redux-thunk";
-import { AnyAction } from "redux";
+import axios, { AxiosResponse } from 'axios';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import {
   ChangePasswordUsingTokenActions,
   ChangePasswordUsingTokenTypes,
-} from "./changePasswordUsingToken.types";
-import ErrorDetails from "../../../types/shared/http.types";
+} from './changePasswordUsingToken.types';
+import ErrorDetails from '../../../types/shared/http.types';
 
 const { REACT_APP_API: API } = process.env;
-console.log(API);
 
 export const changePasswordUsingTokenAction = (): ChangePasswordUsingTokenActions => {
   return {
@@ -17,7 +16,7 @@ export const changePasswordUsingTokenAction = (): ChangePasswordUsingTokenAction
 };
 
 export const changePasswordUsingTokenSuccessAction = (
-  payload: any
+  payload: any,
 ): ChangePasswordUsingTokenActions => {
   return {
     type: ChangePasswordUsingTokenTypes.CHANGE_PASSWORD_USING_TOKEN_SUCCESS,
@@ -26,7 +25,7 @@ export const changePasswordUsingTokenSuccessAction = (
 };
 
 export const changePasswordUsingTokenFailureAction = (
-  msg: string
+  msg: string,
 ): ChangePasswordUsingTokenActions => {
   return {
     type: ChangePasswordUsingTokenTypes.CHANGE_PASSWORD_USING_TOKEN_FAILURE,
@@ -36,23 +35,21 @@ export const changePasswordUsingTokenFailureAction = (
 
 export const changePasswordUsingToken = (
   token: string,
-  newPassword: string
+  newPassword: string,
 ): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     dispatch(changePasswordUsingTokenAction());
 
     try {
       const res: AxiosResponse<any> = await axios({
-        method: "post",
+        method: 'post',
         url: `${API}/users/change-password/${token}`,
         data: {
           newPassword,
         },
       });
-      console.log({ res });
       dispatch(changePasswordUsingTokenSuccessAction(res.data));
     } catch (err) {
-      console.log({ err });
       const { msg }: ErrorDetails = err.response.data;
       dispatch(changePasswordUsingTokenFailureAction(msg));
     }

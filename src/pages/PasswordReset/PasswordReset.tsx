@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { FormikHelpers } from "formik";
-import { useSelector, useDispatch } from "react-redux";
-import { RouteComponentProps, useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { FormikHelpers } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import PasswordResetForm from "./components/PasswordResetForm/PasswordResetForm";
-import { PasswordResetFormValues } from "./PasswordReset.types";
-import { validateResetToken } from "../../actions/passwordReset/passwordResetToken/passwordResetToken";
-import { changePasswordUsingToken } from "../../actions/passwordReset/changePasswordUsingToken/changePasswordUsingToken";
-import { PasswordResetTokenState } from "../../reducers/passwordResetToken/passwordResetToken.types";
+import PasswordResetForm from './components/PasswordResetForm/PasswordResetForm';
+import { PasswordResetFormValues } from './PasswordReset.types';
+import { validateResetToken } from '../../actions/passwordReset/passwordResetToken/passwordResetToken';
+import { changePasswordUsingToken } from '../../actions/passwordReset/changePasswordUsingToken/changePasswordUsingToken';
+import { PasswordResetTokenState } from '../../reducers/passwordResetToken/passwordResetToken.types';
 
 type Params = { token: string };
 
@@ -21,7 +21,7 @@ const PasswordReset: React.FunctionComponent<PasswordResetProps> = ({
 
   const passwordResetToken: PasswordResetTokenState = useSelector(
     ({ passwordResetToken }: { passwordResetToken: PasswordResetTokenState }) =>
-      passwordResetToken
+      passwordResetToken,
   );
   const { isValid, isPending } = passwordResetToken;
 
@@ -32,14 +32,14 @@ const PasswordReset: React.FunctionComponent<PasswordResetProps> = ({
 
   const handleSubmit = async (
     values: PasswordResetFormValues,
-    actions: FormikHelpers<PasswordResetFormValues>
+    actions: FormikHelpers<PasswordResetFormValues>,
   ) => {
     try {
       const { token }: { token: string } = match.params;
       await dispatch(changePasswordUsingToken(token, values.newPassword));
-      history.push("/");
+      history.push('/');
     } catch (e) {
-      console.log("show error snackbar");
+      console.log('show error snackbar');
     }
   };
 
