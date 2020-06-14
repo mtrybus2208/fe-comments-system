@@ -3,13 +3,14 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
 import * as fromActions from '../../actions/shared/auth';
+import * as S from './Dashboard.styles';
 
 export interface DashboardProps {}
 
 const Dashboard: React.FunctionComponent<DashboardProps> = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const fnn = async () => {
+    const fn = async () => {
       try {
         const res: any = await axios({
           method: 'post',
@@ -27,7 +28,7 @@ const Dashboard: React.FunctionComponent<DashboardProps> = () => {
         const { msg }: any = err.response.data;
       }
     };
-    fnn();
+    fn();
   }, []);
 
   const handlerLogout = () => {
@@ -35,10 +36,10 @@ const Dashboard: React.FunctionComponent<DashboardProps> = () => {
   };
 
   return (
-    <div>
+    <S.Dashboard>
       <p>Dashboard</p>
       <button onClick={handlerLogout}>Logout</button>
-    </div>
+    </S.Dashboard>
   );
 };
 

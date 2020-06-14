@@ -37,19 +37,31 @@ const props = {
   },
 };
 
+const sizes = {
+  mobileS: 320,
+  mobileM: 375,
+  mobileL: 425,
+  tablet: 768,
+  laptop: 1024,
+  laptopL: 1440,
+  desktop: 1920,
+  desktopL: 2560,
+};
+
 const media = {
-  mobileS: '(min-width: 320px)',
-  mobileM: '(min-width: 375px)',
-  mobileL: '(min-width: 425px)',
-  tablet: '(min-width: 768px)',
-  laptop: '(min-width: 1024px)',
-  laptopL: '(min-width: 1440px)',
-  desktop: '(min-width: 1920px)',
-  desktopL: '(min-width: 2560px)',
+  mobileS: `(min-width: ${sizes.mobileS}px)`,
+  mobileM: `(min-width: ${sizes.mobileM}px)`,
+  mobileL: `(min-width: ${sizes.mobileL}px)`,
+  tablet: `(min-width: ${sizes.tablet}px)`,
+  laptop: `(min-width: ${sizes.laptop}px)`,
+  laptopL: `(min-width: ${sizes.laptopL}px)`,
+  desktop: `(min-width: ${sizes.desktop}px)`,
+  desktopL: `(min-width: ${sizes.desktopL}px)`,
 };
 
 const theme = {
   ...props,
+  sizes: { ...sizes },
   media: { ...media },
   headerBg: '#363030',
   primary: '#141619',
